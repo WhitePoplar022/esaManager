@@ -10,8 +10,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>菜单管理</title>
-		<meta name="title" content="DSP管理系统"/>
-	    <meta name="application-name" content="DSP管理系统" />
+		<meta name="title" content="esa商家系统"/>
+	    <meta name="application-name" content="esa商家系统" />
 	    
 		<link rel="stylesheet" type="text/css" href="${ctx}/frame/jquery/jqGrid-4.7.0/css/ui.jqgrid.css"/>
 		<script src="${ctx}/frame/jquery/jqGrid-4.7.0/js/jquery.jqGrid.src.js" type="text/javascript" ></script>

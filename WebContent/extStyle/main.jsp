@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>YES管理统计平台</title>
+	<title>esa商家系统</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
