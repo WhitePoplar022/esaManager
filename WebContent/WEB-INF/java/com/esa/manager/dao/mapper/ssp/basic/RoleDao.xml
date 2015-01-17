@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.esa.manager.dao.mapper.ssp.basic.RoleDao">
+	
+	<select id="selectLimitCount" parameterType="com.esa.manager.dao.entity.basic.RoleEty" resultType="java.lang.Integer">
+		SELECT count(1) from role
+		WHERE 1=1 
+		<if test="id != null "> AND id=#{id}</if>
+		<if test="roleName != null  and !roleName.toString().equals('')"> AND roleName=#{roleName}</if>
+	</select>
+
+	<select id="selectByLimit" parameterType="com.esa.manager.dao.entity.basic.RoleEty" resultType="com.esa.manager.dao.entity.basic.RoleEty">
+		SELECT sr.id, sr.roleName, sr.describle,
+		group_concat(srs.menuId SEPARATOR ',') as menuId,
+		group_concat( distinct srf.funId SEPARATOR ','  ) as funId
+		from role sr 
+		left join ssp_roleresource srs on sr.id = srs.roleId
+		left join role_function srf on sr.id = srf.roleId
+		WHERE 1=1 
+		<if test="id != null "> AND id=#{id}</if>
+		<if test="roleName != null  and !roleName.toString().equals('')"> AND roleName=#{roleName}</if>
+		GROUP BY sr.id
+		<if test="extLimit.sort != null and !extLimit.sort.toString().equals('')">order by ${extLimit.sort} ${extLimit.dir}</if>
+		<if test="extLimit.limit != null">limit #{extLimit.start}, #{extLimit.limit}</if>
+	</select>
+
+	<delete id="deleteById" parameterType="int">
+		DELETE FROM role WHERE id=#{id}
+	</delete>
+	
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.esa.manager.dao.entity.basic.RoleEty"  >
+         insert into role(
+			roleName,describle)
+		values (
+			#{roleName},#{describle}
+		)
+    </insert>
+    
+	<update id="updateById" parameterType="com.esa.manager.dao.entity.basic.RoleEty">
+		UPDATE role SET
+		<if test="roleName != null  and !roleName.toString().equals('')"> roleName=#{roleName},</if>
+		describle=#{describle},
+		id = #{id}
+		WHERE id=#{id}
+	</update>
+	
+	<insert id="insertMenu" parameterType="java.util.Map"  >
+         INSERT into ssp_roleresource (roleId,menuId)
+		 values (#{roleId},#{menuId})
+    </insert>
+    
+    <insert id="insertFunction" parameterType="java.util.Map"  >
+         INSERT into role_function (
+			roleId,funId)
+		values (
+			#{roleId},#{funId}
+		)
+    </insert>
+    
+	<delete id="deleteMenu" parameterType="int">
+		DELETE FROM ssp_roleresource WHERE roleId=#{roleId}
+	</delete>
+	<delete id="deleteFunction" parameterType="int">
+		DELETE FROM role_function WHERE roleId=#{roleId}
+	</delete>
+	<select id="getUsingRole" parameterType="int" resultType="int" >
+		SELECT count(1) 
+		FROM user_role
+		WHERE roleId = #{roleId}
+	</select>
+</mapper>

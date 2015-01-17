@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html ng-app="user">
+<head>
+<meta charset="utf-8" />
+
+<script src="dsp/basic/user.js"></script>
+
+</head>
+<body>
+	<!-- BEGIN PAGE CONTENT-->
+	<div class="row">
+		<div class="col-md-12">
+			<!-- BEGIN EXAMPLE TABLE PORTLET-->
+			<div class="portlet box grey-cascade">
+				<div class="portlet-body">
+					<div class="table-toolbar">
+						<div class="row">
+							<div class="col-md-6">
+
+								<div class="btn-group">
+									<button class="btn user-btn-add-modal" data-toggle="modal">
+										新建用户 <i class="fa fa-plus"></i>
+									</button>
+									<button class="btn user-btn-edit-modal">
+										修改用户 <i class="fa fa-edit"></i>
+									</button>
+									<button class="btn user-btn-remove"  >
+										删除用户 <i class="fa fa-times"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--界面grid -->
+					<table class="table table-striped table-bordered table-hover"
+						id="sample_1">
+
+					</table>
+				</div>
+			</div>
+			<!-- END EXAMPLE TABLE PORTLET-->
+		</div>
+	</div>
+
+	<div class="modal fade user-modal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"></button>
+					<h4 class="modal-title">新建用户</h4>
+				</div>
+				<form class="userForm">
+					<div class="modal-body">
+						<div class="form-body">
+						<div class="row">
+						<div class="alert alert-danger display-hide">
+								<button class="close" data-close="alert"></button>
+								验证未通过，请重新填写...
+							</div>
+							<div class="alert alert-success display-hide">
+								<button class="close" data-close="alert"></button>
+								验证通过!
+							</div>
+						<div class="col-md-6">
+							
+							<div class="form-group">
+								<label class="col-md-12 control-label">用户名:<span class="required"> * </span></label>
+								<div class="col-md-9">
+									<div class="input-inline input-medium">
+										<div class="input-group input-icon right ">
+											 <span class="input-group-addon">
+												 <i class="fa fa-user"></i>
+											</span>
+											<i class="fa"></i>
+											<input type="text"  name="name" class="form-control" placeholder="请输入用户名...">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-md-12 control-label">联系电话:</label>
+								<div class="col-md-9">
+									<div class="input-inline input-medium">
+										<div class="input-group">
+											 <span class="input-group-addon">
+												 <i class="fa fa-user"></i>
+											</span>
+											<input type="text"  name="userphone" class="form-control" placeholder="请输入联系电话...">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-md-12 control-label">性别:<span class="required"> * </span></label>
+								<div class="col-md-9">
+									<div class="input-inline input-medium">
+										<div class="input-group">
+											 <span class="input-group-addon">
+												 <i class="fa fa-user"></i>
+											</span>
+											<input type="text"  name="sex" class="form-control" placeholder="请输入性别...">
+										</div>
+									</div>
+								</div>
+							</div>
+							</div>
+							<div class="col-md-6">
+							
+							<div class="form-group">
+								<label class="col-md-12 control-label">密码:<span class="required"> * </span></label>
+								<div class="col-md-9">
+									<div class="input-inline input-medium">
+										<div class="input-group">
+											 <span class="input-group-addon">
+												 <i class="fa fa-user"></i>
+											</span>
+											<input type="text"  name="password" class="form-control" placeholder="请输入密码...">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							</div>
+						</div>
+						<div>
+							<div class="row">
+								<div class="col-md-offset-3 col-md-9"></div>
+							</div>
+						</div>
+					</div>
+						<!-- END FORM-->
+					</div>
+					<div class="modal-footer form-actions">
+						<button type="button" data-dismiss="modal" class="btn default ">取消</button>
+						<button type="submit" class="btn blue user-btn-add">添加</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

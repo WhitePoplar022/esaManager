@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.esa.manager.dao.mapper.ssp.basic.MenuDao">
+	<select id="getListByParentId"  resultType="com.esa.manager.dao.entity.basic.MenuEty" parameterType="int">
+		SELECT 
+		sm.id,sm.menuName,sm.menuOrder,sm.parantMenuID,sm.icon,sm.openIcon,sm.type,sm.isValiDate,
+		sm.description,sm.jsClassFile,sm.actionPath,
+		group_concat(sf.name order by sf.id  SEPARATOR ',') as functions 
+		FROM menu sm
+		LEFT JOIN function sf
+		ON sm.id = sf.p_menu_id
+		WHERE parantMenuID=#{id} 
+		GROUP BY sm.id
+		order by sm.menuOrder, sm.menuName
+	</select>
+	<select id="selectById"  resultType="com.esa.manager.dao.entity.basic.MenuEty" parameterType="int">
+		select * from menu where id=#{id} order by id, menuName;
+	</select>
+	<select id="selectLimitCount" parameterType="com.esa.manager.dao.entity.basic.MenuEty" resultType="java.lang.Integer">
+		SELECT count(1) FROM menu sm
+		LEFT JOIN function sf
+		ON sm.id = sf.p_menu_id
+	</select>
+
+	<select id="selectByLimit" parameterType="com.esa.manager.dao.entity.basic.MenuEty" resultType="com.esa.manager.dao.entity.basic.MenuEty">
+		SELECT 
+		sf.id,sf.menuName,sf.parantMenuID,sf.icon,sf.openIcon,sf.type,sf.isValiDate,
+		sf.description,sf.jsClassFile,sf.actionPath,
+		group_concat(sf.name SEPARATOR ',') as functions 
+		FROM menu sm
+		LEFT JOIN function sf
+		ON sm.id = sf.p_menu_id
+		WHERE 1=1 
+		GROUP BY sm.id
+		<if test="extLimit.sort != null">order by #{extLimit.sort} #{extLimit.dir}</if>
+		<if test="extLimit.limit != null">limit #{extLimit.start}, #{extLimit.limit}</if>
+	</select>
+
+	<delete id="deleteById" parameterType="int">
+		DELETE FROM menu WHERE id=#{id}
+	</delete>
+	
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.esa.manager.dao.entity.basic.MenuEty"  >
+        insert into menu(
+			menuName,parantMenuID,icon,openIcon,type,isValiDate,description,jsClassFile,actionPath,menuOrder
+		)
+		values (
+			#{menuName},#{parantMenuID},#{icon},#{openIcon},#{type},#{isValiDate},#{description},#{jsClassFile},#{actionPath},#{menuOrder}
+		)
+    </insert>
+    
+    <update id="updateById" parameterType="com.esa.manager.dao.entity.basic.MenuEty">
+		UPDATE menu SET
+			<if test="menuName != null  and !menuName.toString().equals('')"> menuName=#{menuName},</if>
+			<if test="parantMenuID != null "> parantMenuID=#{parantMenuID},</if>
+			<if test="icon != null  and !icon.toString().equals('')"> icon=#{icon},</if>
+			<if test="openIcon != null  and !openIcon.toString().equals('')"> openIcon=#{openIcon},</if>
+			<if test="type != null  and !type.toString().equals('')"> type=#{type},</if>
+			<if test="menuOrder != null  and !menuOrder.toString().equals('')"> menuOrder=#{menuOrder},</if>
+			<if test="isValiDate != null"> isValiDate=#{isValiDate},</if>
+			 description=#{description},
+			 jsClassFile=#{jsClassFile},
+			 actionPath=#{actionPath},
+		id=#{id}
+		WHERE
+		id=#{id}
+	</update>
+	
+	<select id="getUsingMenu" parameterType="int" resultType="int" >
+		SELECT count(1) 
+		FROM ssp_roleresource
+		WHERE menuId = #{menuId}
+	</select>
+</mapper>

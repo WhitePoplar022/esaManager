@@ -1,0 +1,116 @@
+[{
+			"name" : "发布当前优惠活动",
+			"id" : 3,
+			"leaf":true,
+			"url" : "dsp/basic/user.html",
+			"icon" : "icon-magic-wand"
+		}, {
+			"name" : "发布招聘及转让信息",
+			"icon" : "icon-disc",
+			"id" : 401,
+			"leaf":true,
+			"url" : "dsp/extension/extension.html"
+		}, {
+			"name" : "财务管理",
+			"icon" : "fa fa-laptop",
+			"id" : 402,
+			"leaf":true,
+			"url" : "dsp/basic/user1.html"
+		}, {
+			"name" : "个人信息管理",
+			"icon" : "fa fa-joomla",
+			"id" : 403,
+			"leaf":true,
+			"url" : "dsp/ui/icons2222.html"
+		}, {
+			"name" : "后台管理",
+			"id" : 1,
+			"leaf":false,
+			"icon" : "fa fa-gear",
+			"menus" : [{
+						"name" : "用户管理",
+						"icon" : "fa fa-user",
+						"id" : 105,
+						"leaf":true,
+						"active" : "active",
+						"url" : "dsp/basic/use3r.html"
+					}, {
+						"name" : "角色管理",
+						"icon" : "fa fa-users",
+						"id" : 106,
+						"leaf":true,
+						"active" : "active",
+						"url" : "dsp/basic/use4r.html"
+					}, {
+						"name" : "菜单管理",
+						"id" : 111,
+						"leaf":true,
+						"icon" : "fa fa-sliders",
+						"url" : "dsp/basic/men9u.html"
+					}, {
+						"name" : "客户管理",
+						"icon" : "fa fa-heart",
+						"id" : 103,
+						"leaf":true,
+						"active" : "active",
+						"url" : "dsp/basic/user1.html"
+					}, {
+						"name" : "员工管理",
+						"icon" : "fa fa-qq",
+						"id" : 104,
+						"leaf":true,
+						"active" : "active",
+						"url" : "dsp/basic/use2r.html"
+					}, {
+						"name" : "资质管理",
+						"icon" : "fa fa-cloud",
+						"id" : 107,
+						"leaf":true,
+						"active" : "active",
+						"url" : "dsp/basic/use5r.html"
+					}, {
+						"name" : "发票管理",
+						"icon" : "fa fa-credit-card",
+						"id" : 108,
+						"leaf":true,
+						"active" : "active",
+						"url" : "dsp/basic/us6er.html"
+					}, {
+						"name" : "回收站",
+						"icon" : "fa fa-bullseye",
+						"id" : 109,
+						"leaf":true,
+						"active" : "active",
+						"url" : "dsp/basic/use7r.html"
+					}]
+		}, {
+			"name" : "界面Demo",
+			"id" : 2,
+			"leaf":false,
+			"icon" : "fa fa-laptop",
+			"menus" : [{
+						"name" : "界面图标ICON",
+						"icon" : "icon-home",
+						"id" : 201,
+						"leaf":true,
+						"url" : "dsp/ui/icons.html"
+					}, {
+						"name" : "FORM表单",
+						"id" : 202,
+						"leaf":true,
+						"icon" : "icon-basket",
+						"url" : "dsp/ui/form.html"
+					}, {
+						"name" : "时间轴",
+						"id" : 202,
+						"leaf":true,
+						"icon" : "icon-basket",
+						"url" : "dsp/ui/timeline.html"
+					}, {
+						"name" : "详单列表",
+						"id" : 203,
+						"leaf":true,
+						"icon" : "icon-tag",
+						"url" : "index/index8.html"
+					}]
+		}]

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd        
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd        
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<bean id="dataSource_esa" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/esa?useUnicode=true&amp;characterEncoding=utf-8"/>
+		<property name="username" value="root"/>
+		<property name="password" value=""/>
+		<property name="maxActive" value="20"/>
+		<property name="initialSize" value="10"/>
+		<property name="maxIdle" value="20"/>
+		<property name="maxWait" value="30"/>
+		<property name="validationQuery" value="select now()"/>
+	</bean>
+	
+	<bean id="transactionManager_esaManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource_esa"/>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager_esaManager"/>
+	
+	<bean id="sqlSessionFactory_adssp" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource_esa"></property>
+		<property name="mapperLocations" value="classpath:com/esa/manager/dao/mapper/ssp/**/*.xml"></property>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory_adssp"></property>
+		<property name="basePackage" value="com.esa.manager.dao.mapper.ssp"></property>
+	</bean>
+</beans>	

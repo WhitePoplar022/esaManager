@@ -1,0 +1,1 @@
+var UIGeneral = function () {}();

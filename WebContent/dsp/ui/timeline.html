@@ -1,0 +1,516 @@
+<style>
+/***
+Timeline UI Base
+***/
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+/* The line */
+.timeline:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: #ccc;
+  left: 20%;
+  margin-left: -10px;
+}
+
+.timeline > li {
+  position: relative;
+}
+
+/*Remove timeline line for last entry*/
+.timeline > li.timeline-noline:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: #fff;
+  left: 20%;
+  margin-left: -10px;
+}
+
+/* The date/time */
+.timeline > li .timeline-time {
+  display: block;
+  width: 15%;
+  text-align: right;
+  position: absolute;
+}
+
+.timeline > li .timeline-time span {
+  display: block;
+  text-align: right;
+}
+
+.timeline > li .timeline-time span.date {
+  font-size: 12px;
+  color: #aaa;
+  display: block;
+  font-weight: 300;
+}
+
+.timeline > li .timeline-time span.time {
+  font-weight: 300;
+  font-size: 38px;
+  line-height: 38px;
+}
+
+/* Right content */
+.timeline > li .timeline-body {
+  margin: 0 0 15px 25%;
+  color: #fff;
+  padding: 10px;
+  font-weight: 300;
+  position: relative;
+  border-radius: 5px;
+}
+
+.timeline > li .timeline-body h2 {
+  margin-top: 0px;
+  padding: 0 0 5px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 24px;
+}
+
+.timeline > li .timeline-content {
+  font-size: 14px;
+}
+
+.ie8 .timeline > li .timeline-body h2 {
+  border-bottom: 1px solid #eee;
+}
+
+.timeline > li .timeline-body img.timeline-img {
+  width: 75px;
+  height: 75px;
+  margin: 5px 10px 0 0px;
+}
+
+.timeline > li .timeline-body img.pull-right {
+  margin-left: 10px;
+}
+
+.timeline > li .timeline-body a.nav-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 14px;
+  padding: 0px;
+  text-align: left;
+  text-decoration: none;
+}
+
+.timeline > li .timeline-body a.nav-link:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+.timeline > li .timeline-body .btn {
+  margin-top: 10px;
+}
+
+/* The triangle */
+.timeline > li .timeline-body:after {
+  right: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-right-color: #3594cb;
+  border-width: 10px;
+  top: 19px;
+}
+
+.timeline > li .timeline-content:after,
+.timeline > li .timeline-content:before {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.timeline > li .timeline-content:after {
+  clear: both;
+}
+
+.timeline > li .timeline-footer:after,
+.timeline > li .timeline-footer:before {
+  content: "";
+  display: table;
+  line-height: 0;
+}
+
+.timeline > li .timeline-footer:after {
+  clear: both;
+}
+
+/* The icons */
+.timeline > li .timeline-icon {
+  width: 40px;
+  height: 40px;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  font-size: 1.4em;
+  line-height: 40px;
+  -webkit-font-smoothing: antialiased;
+  position: absolute;
+  color: #fff;
+  background: #aaa;
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px #ccc;
+  text-align: center;
+  left: 20%;
+  top: 0;
+  margin: 5px 0 0 -25px;
+  padding-bottom: 3px;
+  padding-right: 1px;
+  padding-left: 2px;
+  -webkit-border-radius: 30px !important;
+  -moz-border-radius: 30px !important;
+  border-radius: 30px !important;
+}
+
+.timeline > li .timeline-icon > i {
+  font-size: 18px;
+}
+
+/* Red */
+.timeline li.timeline-red .timeline-body:after {
+  border-right-color: #e02222;
+}
+
+.timeline li.timeline-red .timeline-body {
+  background: #e02222;
+}
+
+.timeline li.timeline-red .timeline-time span.time {
+  color: #e02222;
+}
+
+/* Yellow */
+.timeline li.timeline-yellow .timeline-body:after {
+  border-right-color: #ffb848;
+}
+
+.timeline li.timeline-yellow .timeline-body {
+  background: #ffb848;
+}
+
+.timeline li.timeline-yellow .timeline-time span.time {
+  color: #ffb848;
+}
+
+/* Green */
+.timeline li.timeline-green .timeline-body:after {
+  border-right-color: #35aa47;
+}
+
+.timeline li.timeline-green .timeline-body {
+  background: #35aa47;
+}
+
+.timeline li.timeline-green .timeline-time span.time {
+  color: #35aa47;
+}
+
+/* Blue */
+.timeline li.timeline-blue .timeline-body:after {
+  border-right-color: #4b8df8;
+}
+
+.timeline li.timeline-blue .timeline-body {
+  background: #4b8df8;
+}
+
+.timeline li.timeline-blue .timeline-time span.time {
+  color: #4b8df8;
+}
+
+/* Purple */
+.timeline li.timeline-purple .timeline-body:after {
+  border-right-color: #852b99;
+}
+
+.timeline li.timeline-purple .timeline-body {
+  background: #852b99;
+}
+
+.timeline li.timeline-purple .timeline-time span.time {
+  color: #852b99;
+}
+
+/* Grey */
+.timeline li.timeline-grey .timeline-body:after {
+  border-right-color: #555555;
+}
+
+.timeline li.timeline-grey .timeline-body {
+  background: #555555;
+}
+
+.timeline li.timeline-grey .timeline-time span.time {
+  color: #555555;
+}
+
+@media (max-width: 767px) {
+  timeline > li .timeline-time span.time {
+    font-size: 18px;
+  }
+
+  .timeline:before {
+    display: none;
+  }
+
+  .timeline > li .timeline-time {
+    width: 100%;
+    position: relative;
+    padding: 0 0 20px 0;
+  }
+
+  .timeline > li .timeline-time span {
+    text-align: left;
+  }
+
+  .timeline > li .timeline-body {
+    margin: 0 0 30px 0;
+    padding: 1em;
+  }
+
+  .timeline > li .timeline-body:after {
+    right: auto;
+    left: 20px;
+    top: -20px;
+  }
+
+  .timeline > li .timeline-icon {
+    position: relative;
+    float: right;
+    left: auto;
+    margin: -55px 5px 0 0px;
+  }
+
+  /*colors*/
+  .timeline li.timeline-red .timeline-body:after {
+    border-right-color: transparent;
+    border-bottom-color: #e02222;
+  }
+
+  .timeline li.timeline-blue .timeline-body:after {
+    border-right-color: transparent;
+    border-bottom-color: #4b8df8;
+  }
+
+  .timeline li.timeline-green .timeline-body:after {
+    border-right-color: transparent;
+    border-bottom-color: #35aa47;
+  }
+
+  .timeline li.timeline-yellow .timeline-body:after {
+    border-right-color: transparent;
+    border-bottom-color: #ffb848;
+  }
+
+  .timeline li.timeline-purple .timeline-body:after {
+    border-right-color: transparent;
+    border-bottom-color: #852b99;
+  }
+
+  .timeline li.timeline-grey .timeline-body:after {
+    border-right-color: transparent;
+    border-bottom-color: #555555;
+  }
+}
+</style>
+
+<div class="row">
+				<div class="col-md-12">
+					<ul class="timeline">
+						<li class="timeline-yellow">
+							<div class="timeline-time">
+								<span class="date">
+								4/10/13 </span>
+								<span class="time">
+								18:30 </span>
+							</div>
+							<div class="timeline-icon">
+								<i class="fa fa-trophy"></i>
+							</div>
+							<div class="timeline-body">
+								<h2>ICT 2013 20th International Conference</h2>
+								<div class="timeline-content">
+									<img class="timeline-img pull-left" src="../assets/admin/pages/media/blog/2.jpg" alt="">
+									Ricebean black-eyed pea maize scallion green bean spinach cabbage jicama bell pepper carrot onion corn plantain garbanzo. Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize scallion green bean spinach cabbage jicama bell pepper carrot onion corn plantain garbanzo.
+								</div>
+								<div class="timeline-footer">
+									<a href="#" class="nav-link pull-right">
+									Read more <i class="m-icon-swapright m-icon-white"></i>
+									</a>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-blue">
+							<div class="timeline-time">
+								<span class="date">
+								4/11/13 </span>
+								<span class="time">
+								12:04 </span>
+							</div>
+							<div class="timeline-icon">
+								<i class="fa fa-video-camera"></i>
+							</div>
+							<div class="timeline-body">
+								<h2>Management Meeting</h2>
+								<div class="timeline-content">
+									<img class="timeline-img pull-right" src="../assets/admin/pages/media/blog/1.jpg" alt="">
+									Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi..
+								</div>
+								<div class="timeline-footer">
+									<a href="#" class="nav-link">
+									Read more <i class="m-icon-swapright m-icon-white"></i>
+									</a>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-green">
+							<div class="timeline-time">
+								<span class="date">
+								4/13/13 </span>
+								<span class="time">
+								05:36 </span>
+							</div>
+							<div class="timeline-icon">
+								<i class="fa fa-comments"></i>
+							</div>
+							<div class="timeline-body">
+								<h2>New Project Launch</h2>
+								<div class="timeline-content">
+									<img class="timeline-img pull-left" src="../assets/admin/pages/media/blog/3.jpg" alt="">
+									Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean.
+								</div>
+								<div class="timeline-footer">
+									<a href="#" class="nav-link">
+									Read more <i class="m-icon-swapright m-icon-white"></i>
+									</a>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-purple">
+							<div class="timeline-time">
+								<span class="date">
+								4/15/13 </span>
+								<span class="time">
+								13:15 </span>
+							</div>
+							<div class="timeline-icon">
+								<i class="fa fa-music"></i>
+							</div>
+							<div class="timeline-body">
+								<h2>Promotion Day</h2>
+								<div class="timeline-content">
+									<div class="scroller" data-height="175px" data-always-visible="1" data-rail-visible1="1">
+										<p>
+											<img class="timeline-img pull-right" src="../assets/admin/pages/media/blog/4.jpg" alt="">
+											Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi. coriander bitterleaf epazote radicchio shallot winter purslane collard.
+										</p>
+										<p>
+											 Coriander bitterleaf epazote radicchio shallot winter purslane collard. Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi.
+										</p>
+										<p>
+											<img class="timeline-img pull-left" src="../assets/admin/pages/media/blog/6.jpg" alt=""> Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi radicchio shallot winter purslane collard greens spring onion squash lentil.
+										</p>
+										<p>
+											 Coriander bitterleaf epazote radicchio shallot winter purslane collard. Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi.
+										</p>
+									</div>
+								</div>
+								<div class="timeline-footer">
+									<a href="#" class="btn blue">
+									Read more <i class="m-icon-swapright m-icon-white"></i>
+									</a>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-red">
+							<div class="timeline-time">
+								<span class="date">
+								4/16/13 </span>
+								<span class="time">
+								21:30 </span>
+							</div>
+							<div class="timeline-icon">
+								<i class="fa fa-rss"></i>
+							</div>
+							<div class="timeline-body">
+								<h2>Daily Feeds</h2>
+								<div class="timeline-content">
+									<img class="timeline-img pull-left" src="../assets/admin/pages/media/blog/5.jpg" alt="">
+									Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize scallion green bean spinach cabbage jicama bell pepper carrot onion corn plantain garbanzo. Sierra leone bologi komatsuna celery peanut swiss chard silver beet squash dandelion maize chicory burdock tatsoi dulse radish wakame beetroot.
+								</div>
+								<div class="timeline-footer">
+									<a href="#" class="btn green pull-right">
+									Read more <i class="m-icon-swapright m-icon-white"></i>
+									</a>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-grey">
+							<div class="timeline-time">
+								<span class="date">
+								4/17/13 </span>
+								<span class="time">
+								12:11 </span>
+							</div>
+							<div class="timeline-icon">
+								<i class="fa fa-times"></i>
+							</div>
+							<div class="timeline-body">
+								<h2>Staff Meeting</h2>
+								<div class="timeline-content">
+									 Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi.
+								</div>
+								<div class="timeline-footer">
+									<a href="#" class="nav-link pull-right">
+									Read more <i class="m-icon-swapright m-icon-white"></i>
+									</a>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-blue timeline-noline">
+							<div class="timeline-time">
+								<span class="date">
+								4/18/13 </span>
+								<span class="time">
+								09:56 </span>
+							</div>
+							<div class="timeline-icon">
+								<i class="fa fa-bar-chart-o"></i>
+							</div>
+							<div class="timeline-body">
+								<h2>Demo Europe 2013</h2>
+								<div class="timeline-content">
+									<img class="timeline-img pull-left" src="../assets/admin/pages/media/blog/2.jpg" alt="">
+									Parsnip lotus root celery yarrow seakale tomato collard greens tigernut epazote ricebean melon tomatillo soybean chicory broccoli beet greens peanut salad. Lotus root burdock bell pepper chickweed shallot groundnut pea sprouts welsh onion wattle seed pea salsify turnip scallion peanut arugula bamboo shoot onion swiss chard.
+								</div>
+								<div class="timeline-footer">
+									<a href="#" class="nav-link">
+									Read more <i class="m-icon-swapright m-icon-white"></i>
+									</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- END PAGE CONTENT-->

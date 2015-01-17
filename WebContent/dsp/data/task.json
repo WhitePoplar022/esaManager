@@ -1,0 +1,25 @@
+[{
+    "desc":"应用部署 ",
+    "percent":"80",
+    "class":"progress-bar-important"
+},{
+    "desc":"新版本上线",
+    "percent":"100",
+    "class":"progress-bar-success"
+},{
+    "desc":"代码质量",
+    "percent":"30",
+    "class":"progress-bar-info"
+},{
+    "desc":"数据库备份",
+    "percent":"20",
+    "class":"progress-bar-danger"
+},{
+    "desc":"本期迭代",
+    "percent":"89",
+    "class":"progress-bar-success"
+},{
+    "desc":"手机APP",
+    "percent":"50",
+    "class":"progress-bar-warning"
+}]

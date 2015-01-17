@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.esa.manager.dao.mapper.ssp.basic.FunctionDao" >
+
+	
+	<select id="selectLimitCount"  resultType="int" parameterType="com.esa.manager.dao.entity.basic.FunctionEty"  >
+		SELECT count(1) FROM function WHERE 1=1 order by p_menu_id,id;
+	</select>
+	<select id="selectByLimit" parameterType="com.esa.manager.dao.entity.basic.FunctionEty"   resultType="com.esa.manager.dao.entity.basic.FunctionEty" >
+		SELECT * FROM function WHERE 1=1 order by p_menu_id,id;
+	</select>
+	<select id="selectFunctionListByMenuIdCount" parameterType="int" resultType="int">
+		SELECT count(1) 
+		FROM function
+		WHERE p_menu_id=#{p_menu_id} order by id;
+	</select>
+	
+	<select id="selectFunctionListByMenuId" parameterType="int" resultType="com.esa.manager.dao.entity.basic.FunctionEty">
+		SELECT * FROM function
+		WHERE p_menu_id=#{p_menu_id} order by id;
+	</select>
+
+	<delete id="deleteById" parameterType="int">
+		DELETE FROM function WHERE id=#{id}
+	</delete>
+	
+	<delete id="deleteByP_menu_id" parameterType="int">
+		DELETE FROM function WHERE p_menu_id=#{p_menu_id}
+	</delete>
+	
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.esa.manager.dao.entity.basic.FunctionEty"  >
+        insert into function(
+			name,code,create_date,update_date,description,p_menu_id
+		)
+		values (
+			#{name},#{code},#{create_date,jdbcType=TIMESTAMP},#{update_date,jdbcType=TIMESTAMP},#{description},#{p_menu_id}
+		)
+    </insert>
+    
+    <update id="updateById" parameterType="com.esa.manager.dao.entity.basic.FunctionEty">
+		UPDATE function SET
+			<if test="name != null  and !name.toString().equals('')"> name=#{name},</if>
+			<if test="code != null  and !code.toString().equals('')"> code=#{code},</if>
+			<if test="create_date != null  and !create_date.toString().equals('')"> create_date=#{create_date,jdbcType=TIMESTAMP},</if>
+			<if test="update_date != null  and !update_date.toString().equals('')"> update_date=#{update_date,jdbcType=TIMESTAMP},</if>
+			<if test="description != null  and !description.toString().equals('')"> description=#{description},</if>
+			<if test="p_menu_id != null "> p_menu_id=#{p_menu_id},</if>
+		id=#{id}
+		WHERE
+		id=#{id}
+	</update>
+	
+	
+	<select id="selectFunctionByRoleIdCount" parameterType="com.esa.manager.controller.basic.RoleFunForm" resultType="int">
+		SELECT count(1)
+		from role_function rf
+		left join function f on f.id = rf.funId
+		left join menu sm on sm.id = f.p_menu_id
+		where rf.roleId = #{roleId}
+	</select>
+	
+	<select id="selectFunctionByRoleIdList" parameterType="com.esa.manager.controller.basic.RoleFunForm" resultType="com.esa.manager.controller.basic.RoleFunForm">
+		SELECT rf.id,concat("【",sm.menuName,"】-",f.name) name ,f.code,f.description
+		from role_function rf
+		left join function f on f.id = rf.funId
+		left join menu sm on sm.id = f.p_menu_id
+		where rf.roleId = #{roleId}
+		<if test="extLimit.sort != null and !extLimit.sort.toString().equals('')">order by ${extLimit.sort} ${extLimit.dir}</if>
+		<if test="extLimit.limit != null">limit #{extLimit.start}, #{extLimit.limit}</if>
+	</select>
+	
+	
+	<select id="onSelectFunctionByRoleIdCount" parameterType="com.esa.manager.controller.basic.RoleFunForm" resultType="int">
+		SELECT count(1)
+		FROM function f 
+		where f.id not in
+		(select funId from role_function rf where rf.roleId = #{roleId})
+	</select>
+	
+	<select id="onSelectFunctionByRoleIdList" parameterType="com.esa.manager.controller.basic.RoleFunForm" resultType="com.esa.manager.controller.basic.FuntionForm">
+		SELECT f.id,concat("【",sm.menuName,"】-",f.name) name ,f.code,f.description
+		FROM function f 
+		left join menu sm on sm.id = f.p_menu_id
+		where f.id not in
+		(select funId from role_function rf where rf.roleId = #{roleId})
+		<if test="extLimit.sort != null and !extLimit.sort.toString().equals('')">order by ${extLimit.sort} ${extLimit.dir}</if>
+		<if test="extLimit.limit != null">limit #{extLimit.start}, #{extLimit.limit}</if>
+	</select>
+	
+	<insert id="addFun" parameterType="java.util.Map">
+         INSERT into role_function (roleId,funId)
+		 values (#{roleId},#{funId})
+    </insert>
+    
+    <delete id="delFun" parameterType="int">
+         delete FROM role_function where id = #{id}
+    </delete>
+    
+    <select id="vlidateUcode" parameterType="com.esa.manager.dao.entity.basic.FunctionEty" resultType="int">
+		 select count(1) from function where code = #{code} and id != #{id}   	
+    </select>
+</mapper>
