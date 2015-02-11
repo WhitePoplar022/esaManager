@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.esa.manager.dao.mapper.ssp.basic.DbDao">
+	<select id="selectTables" resultType="com.esa.manager.controller.basic.DbData" >
+		SELECT TABLE_NAME as name,TABLE_COMMENT as remark FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dmp';
+	</select>
+	<select id="selectColumnsByTableName" resultType="com.esa.manager.controller.basic.DbForm"  parameterType="com.esa.manager.controller.basic.DbData" >
+		select column_name AS name,DATA_TYPE as type,
+		COLUMN_KEY as iskey,IS_NULLABLE as notnull,
+		COLUMN_COMMENT as remark,COLUMN_DEFAULT as defaults
+		from Information_schema.columns 
+		where table_schema = 'dmp' and table_Name = #{name};
+	</select>
+	<select id="selectIndexByTableName" resultType="com.esa.manager.controller.basic.DbIndex"  parameterType="com.esa.manager.controller.basic.DbData" >
+		select INDEX_NAME as name,COLUMN_NAME as columnName,
+		COLLATION as asc_or_desc,NON_UNIQUE as non_unique,
+		index_comment as remark 
+		from  information_schema.STATISTICS 
+		where  table_schema = 'dmp' and table_Name = #{name};
+
+	</select>
+	
+</mapper>

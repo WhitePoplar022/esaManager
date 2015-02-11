@@ -1,15 +1,15 @@
 package com.esa.manager.util;
 
 public class ExtLimit {
-	private Integer limit;//显示记录数
-	private Integer start;//开始
-	private String sort;//排序列
-	private String dir;//排序方式 ASC DESC
+	private Integer limit;
+	private Integer start;
+	private String sort;
+	private String dir;
 	
-	private String exp_name;//导出文件名称
-	private String exp_type;//导出文件类型
-	private String exp_column_names;//导出头信息
-	private String exp_column_indexs;//导出列字段
+	private String exp_name;
+	private String exp_type;
+	private String exp_column_names;
+	private String exp_column_indexs;
 	
 	public Integer getLimit() {
 		return limit;

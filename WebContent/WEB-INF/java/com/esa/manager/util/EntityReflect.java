@@ -80,13 +80,7 @@ public class EntityReflect<T> {
 		}
 	}
 	
-	/**
-	 * 将request对象中的值放入到实体中<br>
-	 * 如果request既不是RequestEncodingPostWrapper也不是RequestEncodingWrapper，则说明是Ajax请求<b>
-	 * 用此方法时，用Ajax提交的form不能用get方式，否则form中的中文会有乱码
-	 * @param request
-	 * @param object
-	 */
+
 	private static void mappingMapToObject(HttpServletRequest request, Object object) {
 		try {
 			Iterator<String> itor = request.getParameterMap().keySet().iterator();
